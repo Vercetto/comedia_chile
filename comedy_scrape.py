@@ -14,11 +14,11 @@ def read_list(file_path):
         return file.read().splitlines()
 
 # Fetch lists
-def get_locations(): return read_list(os.path.join(RUTA + "/Input/Locations.txt"))
-def get_artists(): return read_list(os.path.join(RUTA + "/Input/Artists.txt"))
-def get_dates(): return read_list(os.path.join(RUTA + "/Input/Dates.txt"))
-def get_times(): return read_list(os.path.join(RUTA + "/Input/Times.txt"))
-def get_URLs(): return read_list(os.path.join(RUTA + "/Output/URLs.txt"))
+def get_locations(): return read_list(os.path.join(RUTA + "Input/Locations.txt"))
+def get_artists(): return read_list(os.path.join(RUTA + "Input/Artists.txt"))
+def get_dates(): return read_list(os.path.join(RUTA + "Input/Dates.txt"))
+def get_times(): return read_list(os.path.join(RUTA + "Input/Times.txt"))
+def get_URLs(): return read_list(os.path.join(RUTA + "Output/URLs.txt"))
 
 # Fetch web page content
 def get_web_page(URL):
@@ -68,7 +68,7 @@ def main():
 
     # Save results to Excel
     df_shows = pd.DataFrame(shows)
-    output_path = os.path.join(RUTA, '/Output/shows.xlsx')
+    output_path = os.path.join(RUTA, 'Output/shows.xlsx')
     df_shows.to_excel(output_path, sheet_name='data', index=False)
     print(f"Data saved to {output_path}")
 

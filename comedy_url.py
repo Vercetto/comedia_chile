@@ -20,7 +20,7 @@ driver.get(URL)
 
 time.sleep(10)
 
-for n in range(1):
+for n in range(0):
     
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)
@@ -51,13 +51,13 @@ for link in links:
     #tickets = [x for x in pagina_web if('tienda' in x)]
 
     if 'tienda' in pagina_web:
-        file = open(RUTA + '/OUTPUT/URLs.txt', 'a+') 
+        file = open(RUTA + 'OUTPUT/URLs.txt', 'a+') 
         file.write(pagina_web + '\n')
         file.close()
         print(pagina_web)
         
     else:
-        file = open(RUTA + '/OUTPUT/URLs_error.txt', 'a+') 
+        file = open(RUTA + 'OUTPUT/URLs_error.txt', 'a+') 
         file.write(pagina_web + '\n')
         file.close()
 
