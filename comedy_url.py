@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 
 #https://python-adv-web-apps.readthedocs.io/en/latest/scraping3.html
-RUTA = 'C:/Proyectos/Comedia_chile2/'
+RUTA = 'C:/Users/Vercetto/comedia_chile/'
 URL = 'https:/comedypass.online/'
 
 driver = webdriver.Chrome()
@@ -20,7 +20,7 @@ driver.get(URL)
 
 time.sleep(10)
 
-for n in range(2):
+for n in range(1):
     
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)

@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 
 #https://python-adv-web-apps.readthedocs.io/en/latest/scraping3.html
-RUTA = 'C:/Proyectos/Comedia_chile2/'
+RUTA = 'C:/Users/Vercetto/comedia_chile/'
 URL = 'https://lacomedia.cl/eventos/'
 
 driver = webdriver.Chrome()

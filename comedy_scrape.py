@@ -6,7 +6,7 @@ from urllib.request import Request, urlopen
 from unidecode import unidecode
 from urllib.error import HTTPError, URLError
 
-RUTA = 'C:/Proyectos/Comedia_chile2'
+RUTA = 'C:/Users/Vercetto/comedia_chile/'
 
 # Function to read lists from files
 def read_list(file_path):
@@ -74,5 +74,4 @@ def main():
 
 # Run script
 if __name__ == "__main__":
-    RUTA = 'C:/Proyectos/Comedia_chile2'
     main()
