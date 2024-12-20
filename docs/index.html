@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events in My City</title>
+    <title>Comedy Shows in My City</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,6 +21,13 @@
             max-width: 1200px;
             margin: 20px auto;
             padding: 0 15px;
+        }
+        .filter {
+            margin-bottom: 20px;
+        }
+        .filter select {
+            padding: 10px;
+            font-size: 16px;
         }
         .event-list {
             list-style-type: none;
@@ -52,25 +59,215 @@
             color: green;
         }
     </style>
+    <script>
+        function filterEvents() {
+            const artist = document.getElementById('artistFilter').value.toLowerCase();
+            const events = document.querySelectorAll('.event-item');
+
+            events.forEach(event => {
+                const artistName = event.getAttribute('data-artist').toLowerCase();
+                if (artist === "all" || artistName.includes(artist)) {
+                    event.style.display = "block";
+                } else {
+                    event.style.display = "none";
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 
 <header>
-    <h1>Events in My City</h1>
-    <p>Find upcoming events in your city.</p>
+    <h1>Comedy Shows in My City</h1>
+    <p>Find upcoming comedy shows in your city.</p>
 </header>
 
 <div class="container">
+    <div class="filter">
+        <label for="artistFilter">Filter by Artist:</label>
+        <select id="artistFilter" onchange="filterEvents()">
+            <option value="all">All</option>
+            <option value="ignacio socias">ignacio socias</option>
+<option value="claudio michaux">claudio michaux</option>
+<option value="nan">nan</option>
+<option value="pam pam">pam pam</option>
+<option value="marcelo valverde">marcelo valverde</option>
+<option value="don carter">don carter</option>
+<option value="rodrigo salinas">rodrigo salinas</option>
+<option value="rodrigo vasquez">rodrigo vasquez</option>
+<option value="mr feromonas">mr feromonas</option>
+        </select>
+    </div>
     <ul class="event-list">
-        {% for event in events %}
-        <li class="event-item">
-            <h3><a href="{{ event['url'] }}" target="_blank">{{ event['artist'] }}</a></h3>
-            <p><strong>Location:</strong> {{ event['location'] }}</p>
-            <p><strong>Date:</strong> {{ event['date'] }}</p>
-            <p><strong>Time:</strong> {{ event['time'] }}</p>
-            <p><strong>Price:</strong> <span class="price">${{ event['price'] }}</span></p>
+        
+        <li class="event-item" data-artist="ignacio socias">
+            <h3><a href="https://comedypass.online/tienda/ignacio-socias-comedy-restobar-17-de-diciembre-2000-hrs/" target="_blank">ignacio socias</a></h3>
+            <p><strong>Date:</strong> 17 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
         </li>
-        {% endfor %}
+        
+        <li class="event-item" data-artist="claudio michaux">
+            <h3><a href="https://comedypass.online/tienda/claudio-michaux-17-de-diciembre-2200-hrs-club-de-san-miguel/" target="_blank">claudio michaux</a></h3>
+            <p><strong>Date:</strong> 17 de diciembre</p>
+            <p><strong>Location:</strong> club de san miguel</p>
+            <p><strong>Time:</strong> 22:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/edo-caroe-comedy-restobar-17-de-diciembre-2230-hrs/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 17 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="pam pam">
+            <h3><a href="https://comedypass.online/tienda/pam-pam-18-de-diciembre-2000-hrs-teatro-fiebre/" target="_blank">pam pam</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/la-vegana-y-la-lesbiana-vale-vieira-y-luni-love-18-de-diciembre-2000-hrs-la-bota-cervecera-valdivia/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="marcelo valverde">
+            <h3><a href="https://comedypass.online/tienda/marcelo-valverde-comedy-restobar-18-de-diciembre-2000-hrs/" target="_blank">marcelo valverde</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="don carter">
+            <h3><a href="https://comedypass.online/tienda/don-carter-18-de-diciembre-2100-hrs-bar-distrito-san-ignacio-san-miguel/" target="_blank">don carter</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 21:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/darinka-rossy-rossy-y-monse-jerez-18-de-diciembre-2100-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> club de san miguel</p>
+            <p><strong>Time:</strong> 21:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="rodrigo salinas">
+            <h3><a href="https://comedypass.online/tienda/rodrigo-salinas-comedy-restobar-18-de-diciembre-2230-hrs/" target="_blank">rodrigo salinas</a></h3>
+            <p><strong>Date:</strong> 18 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/habla-cobarde-edo-caroe-comedy-restobar-19-de-diciembre-2000-hrs/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 19 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/jimmy-aguila-19-de-diciembre-2000-hrs-barbones-vina-del-mar/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 19 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/gaby-del-rio-las-reinas-de-la-noche-19-de-diciembre-2030-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 19 de diciembre</p>
+            <p><strong>Location:</strong> club de san miguel</p>
+            <p><strong>Time:</strong> 20:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/final-feliz-sr-kampos-max-rayo-y-daniel-rubio-comedy-restobar-19-de-diciembre-2230-hrs/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 19 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/no-soy-yo-eres-tu-19-de-diciembre-2230-hrs-the-new-jaggers-club-vina-del-mar-2/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 19 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/mauro-palma-20-de-diciembre-2000-hrs-la-bota-cervecera-valdivia/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/pelao-rodrigo-comedy-restobar-20-de-diciembre-2000-hrs/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 20:00</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/pollo-castillo-20-de-diciembre-1930-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> club de san miguel</p>
+            <p><strong>Time:</strong> 19:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="rodrigo vasquez">
+            <h3><a href="https://comedypass.online/tienda/rodrigo-vasquez-comedy-restobar-20-de-diciembre-2230-hrs/" target="_blank">rodrigo vasquez</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> comedy restobar</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/ivan-arenas-20-de-diciembre-2230-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> club de san miguel</p>
+            <p><strong>Time:</strong> 22:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="mr feromonas">
+            <h3><a href="https://comedypass.online/tienda/odioso-que-vuelvan-los-90-mr-feromonas-viernes-20-de-diciembre-2130-hrs-bar-111/" target="_blank">mr feromonas</a></h3>
+            <p><strong>Date:</strong> 20 de diciembre</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> 21:30</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
+        <li class="event-item" data-artist="nan">
+            <h3><a href="https://comedypass.online/tienda/" target="_blank">nan</a></h3>
+            <p><strong>Date:</strong> nan</p>
+            <p><strong>Location:</strong> nan</p>
+            <p><strong>Time:</strong> nan</p>
+            <p><strong>Price:</strong> <span class="price">nan</span></p>
+        </li>
+        
     </ul>
 </div>
 
