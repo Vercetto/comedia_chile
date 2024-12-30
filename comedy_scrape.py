@@ -14,11 +14,16 @@ def read_list(file_path):
         return file.read().splitlines()
 
 # Fetch lists
-def get_locations(): return read_list(os.path.join(RUTA + "Input/Locations.txt"))
 def get_artists(): return read_list(os.path.join(RUTA + "Input/Artists.txt"))
 def get_dates(): return read_list(os.path.join(RUTA + "Input/Dates.txt"))
 def get_times(): return read_list(os.path.join(RUTA + "Input/Times.txt"))
 def get_URLs(): return read_list(os.path.join(RUTA + "Output/URLs.txt"))
+
+def get_locations():
+    file_path = os.path.join(RUTA + "Input/Locations.xlsx")
+    df = pd.read_excel(file_path)  # Read the Excel file
+    return df['location'].tolist()
+
 
 # Fetch web page content
 def get_web_page(URL):
@@ -48,6 +53,7 @@ def scrape_web_page(URL, web_page, artists, locations, dates, times):
         'time': next((x.strip() for x in times if x in titulo), '')
     }
     return result
+
 
 # Main scraping workflow
 def main():
