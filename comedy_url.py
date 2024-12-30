@@ -20,7 +20,7 @@ driver.get(URL)
 
 time.sleep(10)
 
-for n in range(0):
+for n in range(4):
     
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(2)

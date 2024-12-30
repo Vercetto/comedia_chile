@@ -22,9 +22,11 @@ def get_URLs(): return read_list(os.path.join(RUTA + "Output/URLs.txt"))
 
 # Fetch web page content
 def get_web_page(URL):
+
     try:
         response = Request(URL, headers={'User-Agent': 'Mozilla/5.0'})
         webpage = urlopen(response).read()
+        print(f"Succesufully fetched: {URL}")
         return BeautifulSoup(webpage, 'html.parser')
     except (HTTPError, URLError) as e:
         print(f"Error fetching {URL}: {e}")
