@@ -4,10 +4,10 @@ import numpy as np
 def generate_static_webpage(df, output_file):
     """
     Generates a static HTML webpage from a DataFrame containing comedy show information,
-    grouped by date, with a filter to select artists.
+    grouped by date, with filters for artists and cities.
 
     Parameters:
-        df (pd.DataFrame): DataFrame with columns ['Date', 'Artist', 'Location', 'Time', 'Price', 'URL'].
+        df (pd.DataFrame): DataFrame with columns ['Date', 'Artist', 'Location', 'City', 'Time', 'Price', 'URL'].
         output_file (str): Name of the output HTML file.
     """
     # HTML template
@@ -42,6 +42,7 @@ def generate_static_webpage(df, output_file):
         .filter select {
             padding: 10px;
             font-size: 16px;
+            margin: 0 10px;
         }
         .date-section {
             margin-bottom: 30px;
@@ -85,11 +86,14 @@ def generate_static_webpage(df, output_file):
     <script>
         function filterEvents() {
             const artist = document.getElementById('artistFilter').value.toLowerCase();
+            const city = document.getElementById('cityFilter').value.toLowerCase();
             const events = document.querySelectorAll('.event-item');
 
             events.forEach(event => {
                 const artistName = event.getAttribute('data-artist').toLowerCase();
-                if (artist === "all" || artistName.includes(artist)) {
+                const eventCity = event.getAttribute('data-city').toLowerCase();
+                if ((artist === "all" || artistName.includes(artist)) &&
+                    (city === "all" || eventCity.includes(city))) {
                     event.style.display = "block";
                 } else {
                     event.style.display = "none";
@@ -117,7 +121,12 @@ def generate_static_webpage(df, output_file):
         <label for="artistFilter">Filter by Artist:</label>
         <select id="artistFilter" onchange="filterEvents()">
             <option value="all">All</option>
-            {filter_options}
+            {artist_filter_options}
+        </select>
+        <label for="cityFilter">Filter by City:</label>
+        <select id="cityFilter" onchange="filterEvents()">
+            <option value="all">All</option>
+            {city_filter_options}
         </select>
     </div>
     {content}
@@ -126,9 +135,12 @@ def generate_static_webpage(df, output_file):
 </body>
 </html>"""
 
-    # Generate filter options
+    # Generate filter options for artists and cities
     artists = df['artist'].unique()
-    filter_options = "\n".join([f"<option value=\"{artist}\">{artist}</option>" for artist in artists])
+    cities = df['city'].unique()
+
+    artist_filter_options = "\n".join([f"<option value=\"{artist}\">{artist}</option>" for artist in artists])
+    city_filter_options = "\n".join([f"<option value=\"{city}\">{city}</option>" for city in cities])
 
     # Group events by date
     grouped = df.groupby('date')
@@ -144,9 +156,9 @@ def generate_static_webpage(df, output_file):
         for _, row in group.iterrows():
             price_display = row['price'] if pd.notna(row['price']) else "N/A"
             content_html += f"""
-            <li class="event-item" data-artist="{row['artist']}">
+            <li class="event-item" data-artist="{row['artist']}" data-city="{row['city']}">
                 <h3><a href="{row['url']}" target="_blank">{row['artist']}</a></h3>
-                <p><strong>Location:</strong> {row['location']}</p>
+                <p><strong>Location:</strong> {row['location']} ({row['city']})</p>
                 <p><strong>Time:</strong> {row['time']}</p>
                 <p><strong>Price:</strong> <span class="price">{price_display}</span></p>
             </li>
@@ -154,7 +166,12 @@ def generate_static_webpage(df, output_file):
         content_html += "</ul></div>"
 
     # Combine the template with the content
-    final_html = html_template.replace("{filter_options}", filter_options).replace("{content}", content_html)
+    final_html = (
+        html_template
+        .replace("{artist_filter_options}", artist_filter_options)
+        .replace("{city_filter_options}", city_filter_options)
+        .replace("{content}", content_html)
+    )
 
     # Write the HTML to the output file
     with open(output_file, "w", encoding="utf-8") as f:

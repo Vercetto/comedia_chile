@@ -29,6 +29,7 @@
         .filter select {
             padding: 10px;
             font-size: 16px;
+            margin: 0 10px;
         }
         .date-section {
             margin-bottom: 30px;
@@ -72,11 +73,14 @@
     <script>
         function filterEvents() {
             const artist = document.getElementById('artistFilter').value.toLowerCase();
+            const city = document.getElementById('cityFilter').value.toLowerCase();
             const events = document.querySelectorAll('.event-item');
 
             events.forEach(event => {
                 const artistName = event.getAttribute('data-artist').toLowerCase();
-                if (artist === "all" || artistName.includes(artist)) {
+                const eventCity = event.getAttribute('data-city').toLowerCase();
+                if ((artist === "all" || artistName.includes(artist)) &&
+                    (city === "all" || eventCity.includes(city))) {
                     event.style.display = "block";
                 } else {
                     event.style.display = "none";
@@ -130,50 +134,77 @@
 <option value="marcelo valverde">marcelo valverde</option>
 <option value="leon murillo">leon murillo</option>
         </select>
+        <label for="cityFilter">Filter by City:</label>
+        <select id="cityFilter" onchange="filterEvents()">
+            <option value="all">All</option>
+            <option value="providencia">providencia</option>
+<option value="pirque">pirque</option>
+<option value="san miguel">san miguel</option>
+<option value="coquimbo">coquimbo</option>
+<option value="vallenar">vallenar</option>
+<option value="arica">arica</option>
+<option value="copiapo">copiapo</option>
+<option value="chillan">chillan</option>
+<option value="iquique">iquique</option>
+<option value="buin">buin</option>
+<option value="valdivia">valdivia</option>
+<option value="puerto montt">puerto montt</option>
+<option value="antofagasta">antofagasta</option>
+<option value="nan">nan</option>
+<option value="linares">linares</option>
+<option value="calama">calama</option>
+<option value="maipu">maipu</option>
+<option value="victoria">victoria</option>
+<option value="rancagua">rancagua</option>
+<option value="pichilemu">pichilemu</option>
+<option value="villarica">villarica</option>
+<option value="san fernando">san fernando</option>
+<option value="la ligua">la ligua</option>
+        </select>
     </div>
     
         <div class="date-section">
             <h2>10 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="ivan cabello">
+            <li class="event-item" data-artist="ivan cabello" data-city="puerto montt">
                 <h3><a href="https://comedypass.online/tienda/ivan-cabello-10-de-enero-2000-hrs-bar-baradero-puerto-montt/" target="_blank">ivan cabello</a></h3>
-                <p><strong>Location:</strong> bar baradero</p>
+                <p><strong>Location:</strong> bar baradero (puerto montt)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="alison mandel">
+            <li class="event-item" data-artist="alison mandel" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/alison-mandel-comedy-restobar-10-de-enero-2000-hrs/" target="_blank">alison mandel</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/darinka-rossy-rossy-y-monse-jerez-10-de-enero-2100-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="antofagasta">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-10-de-enero-2100-hrs-terraza-bahia-antofagasta-3/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> terraza bahia</p>
+                <p><strong>Location:</strong> terraza bahia (antofagasta)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="rodrigo gonzalez">
+            <li class="event-item" data-artist="rodrigo gonzalez" data-city="nan">
                 <h3><a href="https://comedypass.online/tienda/rodrigo-gonzalez-10-de-enero-2100-hrs-bar-plaza-curico/" target="_blank">rodrigo gonzalez</a></h3>
-                <p><strong>Location:</strong> nan</p>
+                <p><strong>Location:</strong> nan (nan)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="palomoza">
+            <li class="event-item" data-artist="palomoza" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/palomoza-comedy-restobar-10-de-enero-2230-hrs/" target="_blank">palomoza</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -182,44 +213,44 @@
             <h2>11 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="pato pimienta">
+            <li class="event-item" data-artist="pato pimienta" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/pato-pimienta-comedy-restobar-11-de-enero-2000-hrs/" target="_blank">pato pimienta</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="valdivia">
                 <h3><a href="https://comedypass.online/tienda/la-elvira-barriendo-con-todo-11-de-enero-2000-hrs-la-bota-cervecera-valdivia/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> la bota cervecera</p>
+                <p><strong>Location:</strong> la bota cervecera (valdivia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/desplumados-11-de-enero-2100-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="rodrigo gonzalez">
+            <li class="event-item" data-artist="rodrigo gonzalez" data-city="linares">
                 <h3><a href="https://comedypass.online/tienda/rodrigo-gonzalez-11-de-enero-2200-hrs-la-clandestina-linares/" target="_blank">rodrigo gonzalez</a></h3>
-                <p><strong>Location:</strong> la clandestina</p>
+                <p><strong>Location:</strong> la clandestina (linares)</p>
                 <p><strong>Time:</strong> 22:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="claudio michaux">
+            <li class="event-item" data-artist="claudio michaux" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/claudio-michaux-comedy-restobar-11-de-enero-2230-hrs/" target="_blank">claudio michaux</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="calama">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-11-de-enero-2200-hrs-sublimeat-calama/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> sublimeat</p>
+                <p><strong>Location:</strong> sublimeat (calama)</p>
                 <p><strong>Time:</strong> 22:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -228,9 +259,9 @@
             <h2>13 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="paloma salas">
+            <li class="event-item" data-artist="paloma salas" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/paloma-salas-comedy-restobar-13-de-enero-1930-hrs/" target="_blank">paloma salas</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 19:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -239,16 +270,16 @@
             <h2>14 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="altoyoyo">
+            <li class="event-item" data-artist="altoyoyo" data-city="maipu">
                 <h3><a href="https://comedypass.online/tienda/la-media-girita-altoyoyo-14-de-enero-2130-hrs-coyotes-club-maipu/" target="_blank">altoyoyo</a></h3>
-                <p><strong>Location:</strong> coyotes club</p>
+                <p><strong>Location:</strong> coyotes club (maipu)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="roberto delgado">
+            <li class="event-item" data-artist="roberto delgado" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/pau-san-martin-tirotallas-y-roberto-delgado-comedy-restobar-14-de-enero-2230-hrs/" target="_blank">roberto delgado</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -257,58 +288,58 @@
             <h2>15 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="antofagasta">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-15-de-enero-1900-hrs-enkai-bar-antofagasta-nueva-funcion/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> enkai bar</p>
+                <p><strong>Location:</strong> enkai bar (antofagasta)</p>
                 <p><strong>Time:</strong> 19:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="chiqui aguayo">
+            <li class="event-item" data-artist="chiqui aguayo" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/chiqui-aguayo-comedy-restobar-15-de-enero-1930-hrs/" target="_blank">chiqui aguayo</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 19:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="victoria">
                 <h3><a href="https://comedypass.online/tienda/pampam-camino-a-vina-15-de-enero-2000-hrs-restobar-taberu-sushi-victoria/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> taberu sushi</p>
+                <p><strong>Location:</strong> taberu sushi (victoria)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="rodrigo villegas">
+            <li class="event-item" data-artist="rodrigo villegas" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/rodrigo-villegas-15-de-enero-2100-hrs-club-de-san-miguel/" target="_blank">rodrigo villegas</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="rancagua">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-15-de-enero-2100-hrs-bar-republicano-rancagua/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> bar republicano</p>
+                <p><strong>Location:</strong> bar republicano (rancagua)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="chiqui aguayo">
+            <li class="event-item" data-artist="chiqui aguayo" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/chiqui-aguayo-comedy-restobar-15-de-enero-2230-hrs-segunda-funcion/" target="_blank">chiqui aguayo</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="altoyoyo">
+            <li class="event-item" data-artist="altoyoyo" data-city="pichilemu">
                 <h3><a href="https://comedypass.online/tienda/la-media-girita-altoyoyo-15-de-enero-2130-hrs-los-piures-pichilemu/" target="_blank">altoyoyo</a></h3>
-                <p><strong>Location:</strong> los piures</p>
+                <p><strong>Location:</strong> los piures (pichilemu)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="antofagasta">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-15-de-enero-2230-hrs-enkai-bar-antofagasta/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> enkai bar</p>
+                <p><strong>Location:</strong> enkai bar (antofagasta)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -317,79 +348,79 @@
             <h2>16 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="la wilo">
+            <li class="event-item" data-artist="la wilo" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/la-wilo-tour-del-ver-ano-comedy-restobar-16-de-enero-2000-hrs/" target="_blank">la wilo</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="gringo mode on">
+            <li class="event-item" data-artist="gringo mode on" data-city="valdivia">
                 <h3><a href="https://comedypass.online/tienda/gringo-mode-on-16-de-enero-1930-hrs-la-bota-cervecera-valdivia/" target="_blank">gringo mode on</a></h3>
-                <p><strong>Location:</strong> la bota cervecera</p>
+                <p><strong>Location:</strong> la bota cervecera (valdivia)</p>
                 <p><strong>Time:</strong> 19:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="villarica">
                 <h3><a href="https://comedypass.online/tienda/pampam-camino-a-vina-16-de-enero-2100-hrs-campo-viejo-villarrica/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> campo viejo</p>
+                <p><strong>Location:</strong> campo viejo (villarica)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="rodrigo villegas">
+            <li class="event-item" data-artist="rodrigo villegas" data-city="pirque">
                 <h3><a href="https://comedypass.online/tienda/rodrigo-villegas-16-de-enero-2130-hrs-espacio-eskenazo-pirque/" target="_blank">rodrigo villegas</a></h3>
-                <p><strong>Location:</strong> eskenazo</p>
+                <p><strong>Location:</strong> eskenazo (pirque)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="san fernando">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-16-de-enero-2230-hrs-espacio-claustro-san-fernando/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> espacio claustro</p>
+                <p><strong>Location:</strong> espacio claustro (san fernando)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="luis aravena">
+            <li class="event-item" data-artist="luis aravena" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/luis-aravena-comedy-restobar-16-de-enero-2230-hrs/" target="_blank">luis aravena</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="calama">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-16-de-enero-2200-hrs-sublimeat-calama/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> sublimeat</p>
+                <p><strong>Location:</strong> sublimeat (calama)</p>
                 <p><strong>Time:</strong> 22:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="chiqui aguayo">
+            <li class="event-item" data-artist="chiqui aguayo" data-city="la ligua">
                 <h3><a href="https://comedypass.online/tienda/chiqui-aguayo-16-de-enero-2100-hrs-patio-785-la-ligua/" target="_blank">chiqui aguayo</a></h3>
-                <p><strong>Location:</strong> patio 785</p>
+                <p><strong>Location:</strong> patio 785 (la ligua)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="marcelo valverde">
+            <li class="event-item" data-artist="marcelo valverde" data-city="puerto montt">
                 <h3><a href="https://comedypass.online/tienda/sin-juzgar-marcelo-valverde-16-de-enero-1900-bar-baradero-puerto-montt/" target="_blank">marcelo valverde</a></h3>
-                <p><strong>Location:</strong> bar baradero</p>
+                <p><strong>Location:</strong> bar baradero (puerto montt)</p>
                 <p><strong>Time:</strong> 19:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="leon murillo">
+            <li class="event-item" data-artist="leon murillo" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/leon-murillo-16-de-enero-2100-hrs-club-de-san-miguel/" target="_blank">leon murillo</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="ivan cabello">
+            <li class="event-item" data-artist="ivan cabello" data-city="nan">
                 <h3><a href="https://comedypass.online/tienda/ivan-cabello-16-de-enero-2000-hrs-locos-x-vina-vina-del-mar/" target="_blank">ivan cabello</a></h3>
-                <p><strong>Location:</strong> nan</p>
+                <p><strong>Location:</strong> nan (nan)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -398,9 +429,9 @@
             <h2>17 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="alison mandel">
+            <li class="event-item" data-artist="alison mandel" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/alison-mandel-comedy-restobar-17-de-enero-2000-hrs-2/" target="_blank">alison mandel</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -409,9 +440,9 @@
             <h2>2 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="ignacio socias">
+            <li class="event-item" data-artist="ignacio socias" data-city="pirque">
                 <h3><a href="https://comedypass.online/tienda/ignacio-socias-camino-a-olmue-2-de-enero-2100-hrs-espacio-eskenazo-pirque/" target="_blank">ignacio socias</a></h3>
-                <p><strong>Location:</strong> eskenazo</p>
+                <p><strong>Location:</strong> eskenazo (pirque)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -420,16 +451,16 @@
             <h2>3 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="claudio michaux">
+            <li class="event-item" data-artist="claudio michaux" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/claudio-michaux-comedy-restobar-3-de-enero-2000-hrs/" target="_blank">claudio michaux</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-comedy-restobar-3-de-enero-2230-hrs/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -438,16 +469,16 @@
             <h2>30 de diciembre</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="paloma salas">
+            <li class="event-item" data-artist="paloma salas" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/paloma-salas-comedy-restobar-30-de-diciembre-1930-hrs/" target="_blank">paloma salas</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 19:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="paloma salas">
+            <li class="event-item" data-artist="paloma salas" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/paloma-salas-comedy-restobar-30-de-diciembre-2130-hrs-segunda-funcion/" target="_blank">paloma salas</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -456,23 +487,23 @@
             <h2>4 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="don carter">
+            <li class="event-item" data-artist="don carter" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/don-carter-4-de-enero-2230-hrs-club-de-san-miguel/" target="_blank">don carter</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="juan pablo flores">
+            <li class="event-item" data-artist="juan pablo flores" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/juan-pablo-flores-comedy-restobar-4-de-enero-2000-hrs/" target="_blank">juan pablo flores</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="rodrigo gonzalez">
+            <li class="event-item" data-artist="rodrigo gonzalez" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/rodrigo-gonzalez-comedy-restobar-4-de-enero-2230-hrs/" target="_blank">rodrigo gonzalez</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -481,16 +512,16 @@
             <h2>6 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="paloma salas">
+            <li class="event-item" data-artist="paloma salas" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/paloma-salas-comedy-restobar-6-de-enero-1930-hrs/" target="_blank">paloma salas</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 19:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="paloma salas">
+            <li class="event-item" data-artist="paloma salas" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/paloma-salas-comedy-restobar-6-de-enero-2130-hrs-segunda-funcion/" target="_blank">paloma salas</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -499,23 +530,23 @@
             <h2>7 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="ignacio socias">
+            <li class="event-item" data-artist="ignacio socias" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/ignacio-socias-camino-a-olmue-comedy-restobar-7-de-enero-2000-hrs/" target="_blank">ignacio socias</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="coquimbo">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-7-de-enero-2130-hrs-beergarden-penuelas-coquimbo/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> beergarden</p>
+                <p><strong>Location:</strong> beergarden (coquimbo)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="luis slimming">
+            <li class="event-item" data-artist="luis slimming" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/luis-slimming-comedy-restobar-7-de-enero-2230-hrs/" target="_blank">luis slimming</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -524,30 +555,30 @@
             <h2>8 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="lucas espinoza">
+            <li class="event-item" data-artist="lucas espinoza" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/lucas-espinoza-comedy-restobar-8-de-enero-2000-hrs/" target="_blank">lucas espinoza</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="vallenar">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-8-de-enero-2230-hrs-terrabar-vallenar/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> terrabar</p>
+                <p><strong>Location:</strong> terrabar (vallenar)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/el-primer-show-del-ano-comedy-restobar-8-de-enero-2230-hrs/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="arica">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-8-de-enero-2100-hrs-patio-azapa-arica/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> patio azapa</p>
+                <p><strong>Location:</strong> patio azapa (arica)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
@@ -556,58 +587,58 @@
             <h2>9 de enero</h2>
             <ul class="event-list">
         
-            <li class="event-item" data-artist="pao molina">
+            <li class="event-item" data-artist="pao molina" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/pao-molina-comedy-restobar-9-de-enero-2000-hrs/" target="_blank">pao molina</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 20:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="san miguel">
                 <h3><a href="https://comedypass.online/tienda/3-ramen-de-luca-desicion-dividida-9-de-enero-2100-hrs-club-de-san-miguel/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> club de san miguel</p>
+                <p><strong>Location:</strong> club de san miguel (san miguel)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="no estoy creici">
+            <li class="event-item" data-artist="no estoy creici" data-city="copiapo">
                 <h3><a href="https://comedypass.online/tienda/vituperio-no-estoy-creici-9-de-enero-2130-hrs-espacio-bourbon-copiapo/" target="_blank">no estoy creici</a></h3>
-                <p><strong>Location:</strong> espacio bourbon</p>
+                <p><strong>Location:</strong> espacio bourbon (copiapo)</p>
                 <p><strong>Time:</strong> 21:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="chillan">
                 <h3><a href="https://comedypass.online/tienda/pampam-camino-a-vina-9-de-enero-2100-hrs-gamberetto-chillan/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> gamberetto</p>
+                <p><strong>Location:</strong> gamberetto (chillan)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="nan">
+            <li class="event-item" data-artist="nan" data-city="iquique">
                 <h3><a href="https://comedypass.online/tienda/vicho-y-alex-gira-de-verano-9-de-enero-2100-hrs-la-casa-del-mojito-artesanal-iquique/" target="_blank">nan</a></h3>
-                <p><strong>Location:</strong> la casa del mojito</p>
+                <p><strong>Location:</strong> la casa del mojito (iquique)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="sergio freire">
+            <li class="event-item" data-artist="sergio freire" data-city="providencia">
                 <h3><a href="https://comedypass.online/tienda/sergio-freire-comedy-restobar-9-de-enero-2230-hrs/" target="_blank">sergio freire</a></h3>
-                <p><strong>Location:</strong> comedy restobar</p>
+                <p><strong>Location:</strong> comedy restobar (providencia)</p>
                 <p><strong>Time:</strong> 22:30</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="ignacio socias">
+            <li class="event-item" data-artist="ignacio socias" data-city="buin">
                 <h3><a href="https://comedypass.online/tienda/ignacio-socias-camino-a-olmue-9-de-enero-2100-hrs-patio-bulnes-buin-2/" target="_blank">ignacio socias</a></h3>
-                <p><strong>Location:</strong> patio bulnes</p>
+                <p><strong>Location:</strong> patio bulnes (buin)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
             
-            <li class="event-item" data-artist="ivan cabello">
+            <li class="event-item" data-artist="ivan cabello" data-city="valdivia">
                 <h3><a href="https://comedypass.online/tienda/ivan-cabello-9-de-enero-2000-hrs-la-bota-cervecera-valdivia/" target="_blank">ivan cabello</a></h3>
-                <p><strong>Location:</strong> la bota cervecera</p>
+                <p><strong>Location:</strong> la bota cervecera (valdivia)</p>
                 <p><strong>Time:</strong> 21:00</p>
                 <p><strong>Price:</strong> <span class="price">N/A</span></p>
             </li>
