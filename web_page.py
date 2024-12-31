@@ -150,14 +150,14 @@ def generate_static_webpage(df, output_file):
     city_filter_options = "\n".join([f"<option value=\"{city}\">{city}</option>" for city in cities])
 
     # Group events by date
-    grouped = df.groupby('date')
+    grouped = df.groupby('date2')
 
     # Generate the HTML for each date and its events
     content_html = ""
-    for date, group in grouped:
+    for date2, group in grouped:
         content_html += f"""
         <div class="date-section">
-            <h2>{date}</h2>
+            <h2>{date2}</h2>
             <ul class="event-list">
         """
         for _, row in group.iterrows():
@@ -166,7 +166,7 @@ def generate_static_webpage(df, output_file):
             <li class="event-item" data-artist="{row['artist']}" data-city="{row['city']}">
                 <h3><a href="{row['url']}" target="_blank">{row['artist']}</a></h3>
                 <p><strong>{row['location']}, {row['city']} </strong></p>
-                <p>{price_display} - {row['date']}, {row['time']}</p>
+                <p>{price_display} - {row['date2']}, {row['time']}</p>
             </li>
             """
         content_html += "</ul></div>"

@@ -11,6 +11,7 @@ def transform_date_to_future(date_str):
     }
     
     # Split the input string into day and month
+    date_str = str(date_str)
     day, month_name = date_str.split(' de ')
     month = months[month_name.lower()]  # Get the numeric month
     
@@ -30,7 +31,7 @@ def transform_date_to_future(date_str):
 def add_date():
 
     shows = pd.read_excel('Output/shows.xlsx')
-    shows['date2'] = shows.apply(transform_date_to_future,shows['date'],axis=1)
+    shows['date2'] = shows['date'].apply(transform_date_to_future)
     shows.to_excel('Output/shows.xlsx', sheet_name='data', index=False)
 
     print(f"Data saved to {'Output/shows.xlsx'}")
