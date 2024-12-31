@@ -123,6 +123,9 @@ def generate_static_webpage(df, output_file):
             <option value="all">All</option>
             {artist_filter_options}
         </select>
+    </div>
+    
+    <div class="filter">   
         <label for="cityFilter">Filter by City:</label>
         <select id="cityFilter" onchange="filterEvents()">
             <option value="all">All</option>
@@ -136,8 +139,12 @@ def generate_static_webpage(df, output_file):
 </html>"""
 
     # Generate filter options for artists and cities
-    artists = df['artist'].unique()
-    cities = df['city'].unique()
+
+    df['artist'] = df['artist'].fillna('Unknown').astype(str)
+    df['city'] = df['city'].fillna('Unknown').astype(str)   
+
+    artists = sorted(df['artist'].unique()) 
+    cities = sorted(df['city'].unique()) 
 
     artist_filter_options = "\n".join([f"<option value=\"{artist}\">{artist}</option>" for artist in artists])
     city_filter_options = "\n".join([f"<option value=\"{city}\">{city}</option>" for city in cities])
