@@ -154,13 +154,12 @@ def generate_static_webpage(df, output_file):
             <ul class="event-list">
         """
         for _, row in group.iterrows():
-            price_display = row['price'] if pd.notna(row['price']) else "N/A"
+            price_display = row['price'] if pd.notna(row['price']) else "$10.000"
             content_html += f"""
             <li class="event-item" data-artist="{row['artist']}" data-city="{row['city']}">
                 <h3><a href="{row['url']}" target="_blank">{row['artist']}</a></h3>
-                <p><strong>Location:</strong> {row['location']} ({row['city']})</p>
-                <p><strong>Time:</strong> {row['time']}</p>
-                <p><strong>Price:</strong> <span class="price">{price_display}</span></p>
+                <p>{row['location']}, {row['city']} </p>
+                <p>{price_display} - {row['date']}, {row['time']}</p>
             </li>
             """
         content_html += "</ul></div>"
