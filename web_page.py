@@ -158,7 +158,7 @@ def generate_static_webpage(df, output_file):
             content_html += f"""
             <li class="event-item" data-artist="{row['artist']}" data-city="{row['city']}">
                 <h3><a href="{row['url']}" target="_blank">{row['artist']}</a></h3>
-                <p>{row['location']}, {row['city']} </p>
+                <p><strong>{row['location']}, {row['city']} </strong></p>
                 <p>{price_display} - {row['date']}, {row['time']}</p>
             </li>
             """
